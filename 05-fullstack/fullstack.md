@@ -14,8 +14,8 @@ _____
 |---|---|---|
 | _Profiles ____ | _	user_id UUID primary key; display_name TEXT; created_at TIMESTAMPTZ____ | user_id references auth.users(id). Stores the authenticated user's display information._____ |
 Channels |	id UUID primary key; user_id UUID; name TEXT; created_at and updated_at TIMESTAMPTZ | User-owned acquisition channels. Unique (user_id, name) and (user_id, id).
-daily_metrics	id UUID primary key; user_id UUID; channel_id UUID; metric_date DATE; sessions BIGINT; bounced_sessions BIGINT; signup_sessions BIGINT; timestamps	Unique (user_id, channel_id, metric_date). Composite foreign key (user_id, channel_id) references channels(user_id, id), preventing cross-account channel relationships.
-action_plans	id UUID primary key; user_id UUID; nullable channel_id UUID; period_start and period_end DATE; title, hypothesis, next_step, owner_label TEXT; due_date DATE; status TEXT; timestamps	User-owned investigation plans. Optional channel must belong to the same user. Status: planned, in_progress, or completed. owner_label is descriptive and does not grant access.
+daily_metrics	|id UUID primary key; user_id UUID; channel_id UUID; metric_date DATE; sessions BIGINT; bounced_sessions BIGINT; signup_sessions BIGINT; timestamps|	Unique (user_id, channel_id, metric_date). Composite foreign key (user_id, channel_id) references channels(user_id, id), preventing cross-account channel relationships.
+action_plans	|id UUID primary key; user_id UUID; nullable channel_id UUID; period_start and period_end DATE; title, hypothesis, next_step, owner_label TEXT; due_date DATE; status TEXT; timestamps|	User-owned investigation plans. Optional channel must belong to the same user. Status: planned, in_progress, or completed. owner_label is descriptive and does not grant access.
 ## Access rules
 
 _Who can see / do what? Where are the auth boundaries?_
